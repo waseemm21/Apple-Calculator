@@ -23,3 +23,4 @@ Contributions are welcome! If you have ideas for improvements or new features, f
 ## Acknowledgements
 
 Inspired by the desire to create a simple, functional calculator for everyday use.
+Inspired by the design of IOS Calculator 
