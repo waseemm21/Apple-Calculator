@@ -1,4 +1,4 @@
-# Simple Calculator
+# apple Calculator
 
 Welcome to the Simple Calculator! This project is a web-based calculator built using HTML, CSS, and JavaScript. It provides a straightforward interface for performing basic arithmetic operations while being easy to use.
 
