@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        .hdng {
+            text-align: center;
+            background-color: aqua;
+            border: 2px solid black;
+        }
+        .button {
+            background-color: rgb(156, 164, 164);
+            width: 50px;
+            height: 40px;
+            color: white;
+            border-radius: 10px;
+            padding: 10px;
+            border: 2px solid;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19);
+        }
+        .op {
+            width: 200px;
+            height: 30px;
+            background-color: cornsilk;
+            border: 2px solid purple;
+        }
+        .button:hover {
+            background-color: rgb(103, 238, 103);
+            box-shadow: 0 12px 16px rgba(0,0,0,0.24), 0 17px 50px rgba(0,0,0,0.19);
+        }
+        .structure {
+            border: 2px solid black;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19);
+            padding: 11px;
+            width: 215px;
+            background-color: rgb(113, 113, 158);
+        }
+        .main {
+            background-color: rgb(255, 191, 71);
+            color: aliceblue;
+            width: 50px;
+            height: 40px;
+            border-radius: 10px;
+            padding: 10px;
+            border: 2px solid;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19);
+        }
+        .result {
+            background-color: rgb(117, 251, 117);
+            width: 100px;
+            height: 40px;
+            border-radius: 10px;
+            padding: 10px;
+            border: 2px solid;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19);
+        }
+        .main:hover {
+            background-color: white;
+            color: orange;
+        }
+        .reset {
+            background-color: rgb(255, 191, 71);
+            width: 50px;
+            height: 40px;
+            border-radius: 10px;
+            padding: 10px;
+            border: 2px solid white;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19);
+        }
+        .reset:hover {
+            background-color: rgb(249, 81, 81);
+            color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="hdng">
+        <h1>Welcome to Calculator!</h1>
+    </div><br><br><br>
+    <div class="structure">
+        <input type="text" class="op" id="display" readonly><br><br>
+        <div class="row">
+            <button class="reset" onclick="clearDisplay()">C</button>
+            <button class="main" onclick="appendToDisplay('%')">%</button>
+            <button class="result" onclick="calculateResult()">=</button>
+        </div><br>
+        <div class="row">
+            <button id="seven" class="button" onclick="appendToDisplay('7')">7</button>
+            <button id="eight" class="button" onclick="appendToDisplay('8')">8</button>
+            <button id="nine" class="button" onclick="appendToDisplay('9')">9</button>
+            <button id="add" class="main" onclick="appendToDisplay('+')">+</button>
+        </div><br>
+        <div class="row">
+            <button id="four" class="button" onclick="appendToDisplay('4')">4</button>
+            <button id="five" class="button" onclick="appendToDisplay('5')">5</button>
+            <button id="six" class="button" onclick="appendToDisplay('6')">6</button>
+            <button id="min" class="main" onclick="appendToDisplay('-')">-</button>
+        </div><br>
+        <div class="row">
+            <button id="one" class="button" onclick="appendToDisplay('1')">1</button>
+            <button id="two" class="button" onclick="appendToDisplay('2')">2</button>
+            <button id="three" class="button" onclick="appendToDisplay('3')">3</button>
+            <button id="mul" class="main" onclick="appendToDisplay('*')">*</button>
+        </div><br>
+        <div class="row">
+            <button id="zerooooo" class="button" onclick="appendToDisplay('00')">00</button>
+            <button id="zero" class="button" onclick="appendToDisplay('0')">0</button>
+            <button id="float" class="button" onclick="appendToDisplay('.')">.</button>
+            <button id="div" class="main" onclick="appendToDisplay('/')">/</button>
+        </div>
+    </div> 
+</div> 
+
+<script>
+    function appendToDisplay(value) {
+        const display = document.getElementById('display');
+        display.value += value;
+    }
+
+    function clearDisplay() {
+        document.getElementById('display').value = '';
+    }
+
+    function calculateResult() {
+        const display = document.getElementById('display');
+        try {
+            display.value = eval(display.value);
+        } catch (e) {
+            display.value = 'Error';
+        }
+    }
+    document.addEventListener('keydown', function(event) {
+        const display = document.getElementById('display');
+
+        if (event.key >= '0' && event.key <= '9' || ['+', '-', '*', '/', '.', '%'].includes(event.key)) {
+            appendToDisplay(event.key);
+            event.preventDefault();
+        }
+
+        if (event.key === 'Enter') {
+            calculateResult();
+            event.preventDefault(); 
+        }
+
+        if (event.key === 'Backspace') {
+            display.value = display.value.slice(0, -1);
+            event.preventDefault();
+        }
+    });
+</script>
+</body>
+</html>
